@@ -1,0 +1,69 @@
+nav {
+    margin: 0;
+
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+}
+
+.index_div {
+    height: 200px;
+    width: 400px;
+    background-color: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -200px;
+    opacity: 1;
+    color: white;
+}
+
+.index_h1 {
+    display: block;
+    font-size: 6em;
+    opacity: 2;
+}
+
+.customform {
+    margin-top: 5% !important;
+    margin-bottom: 5% !important;
+    margin-left: 30% !important;
+    margin-right: 30% !important;
+}
+
+.customform h2 {
+    text-align: center;
+}
+
+.customtable {
+    margin-top: 5% !important;
+    margin-bottom: 5% !important;
+    margin-left: 10% !important;
+    margin-right: 10% !important;
+}
+
+
+/*.jumbotron {
+    background-image: url("/static/app/pictures/index_Skate.JPG");
+    background-size: cover;
+    background-position: center;
+    margin-top: 2%;
+    position: relative;
+}
+
+
+
+.jumbotron {
+    margin-top: 2%;
+    position: relative;
+    background: url(/static/app/pictures/index_Skate.JPG);
+    background-position: center top; 
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    overflow: hidden;
+    border-radius: 0 !Important;
+}*/

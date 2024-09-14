@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <form method="POST" action="{{ url_for('cveadd') }}">
+        {% if get_flashed_messages() %}
+        <div class="error">
+            {% for message in get_flashed_messages() %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div class="customform">
+            <h2>Add CVE</h2>
+            <div class="mb-3">
+                <label for="cveid">CVE-ID</label>
+                <input type="text" class="form-control" aria-describedby="cveid" name="cveid" placeholder="CVE-2024-1234">
+            </div>
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="cvescore" name="cvescore" placeholder="8.7">
+                <span class="input-group-text">1.0-10.0</span>
+            </div>
+            <div class="mb-3">
+                <label for="vector">Vector</label>
+                <input type="text" class="form-control" aria-describedby="vector" name="vector" placeholder="CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N">
+            </div>
+            <div class="mb-3">
+                <label for="source">Source</label>
+                <input type="text" class="form-control" aria-describedby="source" name="source" placeholder="Microsoft Coperation">
+            </div>
+            <div class="mb-3">
+                <label for="linktosource">Link to Source</label>
+                <input type="text" class="form-control" aria-describedby="linktosource" name="linktosource" placeholder="https://nvd.nist.gov/vuln/detail/CVE-2024-1234">
+            </div>
+            <div class="mb-3">
+                <label for="cvedescription" class="form-label">CVE Description</label>
+                <textarea class="form-control" id="cvedescription" name="cvedescription" rows="3" placeholder="Windows TCP/IP Remote Code Execution Vulnerability"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="productsfk" class="form-label">Affectet Product</label>
+                <select class="form-select" id="productsfk" name="productsfk" aria-label="productsfk">
+                    {% for product in products %}
+                    <option value="{{product.id}}">{{product.product}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="d-flex justify-content-end align-items-end" style="height: 50px;">
+                <br />
+                <button type="submit" class="position-absolute btn btn-primary">Add</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

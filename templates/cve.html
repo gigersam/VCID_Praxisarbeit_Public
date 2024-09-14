@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="customtable">
+    <div class="error">
+        {% for message in get_flashed_messages() %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-8 me-auto"><h2>All CVE</h2></div>
+            <div class="col-4 me-auto">{% if current_user.is_authenticated %}<a type="button" class="btn btn-primary" href="{{ url_for('cveadd') }}">Add</a>{% endif %}</div>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">CVE-ID</th>
+                <th scope="col">CVE-Score</th>
+                <th scope="col">Vector</th>
+                <th scope="col">Source</th>
+                <th scope="col">CVE-Descipion</th>
+                <th scope="col">Affected Product</th>
+                <th scope="col">Reported by</th>
+                <th scope="col">Solved</th>
+                <th scope="col">Solved by</th>
+                {% if current_user.is_authenticated %}
+                <th scope="col">Change Solved</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for cve in cves %}
+            <tr>
+                <th scope="row">{{cve.cveid}}</th>
+                <td>{{cve.cvescore}}</td>
+                <td>{{cve.vector}}</td>
+                <td>{{cve.source}}</td>
+                <td>{{cve.cvedescipion}}</td>
+                {% for product in products %}
+                {% if cve.productsfk == product.id %}
+                <td>{{product.product}}</td>
+                {% endif %}
+                {% endfor %}
+                {% for user in users %}
+                {% if cve.userfk == user.id %}
+                <td>{{user.username}}</td>
+                {% endif %}
+                {% endfor %}
+                <td>{{cve.solved}}</td>
+                {% if cve.solvedby %}
+                {% for user in users %}
+                {% if cve.solvedby == user.id %}
+                <td>{{user.username}}</td>
+                {% endif %}
+                {% endfor %}
+                {% else %}
+                <td>N/A</td>
+                {% endif %}
+                {% if current_user.is_authenticated %}
+                <td><form method="POST" action="{{ url_for('cvepost') }}"><button type="submit" class="btn btn-primary" name="changevalue" value="{{cve.id}}">Change</button></form></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

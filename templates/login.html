@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <form method="POST" action="{{ url_for('login') }}">
+        {% if get_flashed_messages() %}
+        <div class="error">
+            {% for message in get_flashed_messages() %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div class="customform">
+            <h2>Login</h2>
+            <div>
+                <label for="Email">Username</label>
+                <input type="text" class="form-control" aria-describedby="username" name="username">
+            </div>
+            <div>
+                <label for="Password">Password</label>
+                <input type="password" class="form-control" id="Password" name="password">
+            </div>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{{ url_for('register') }}">Sign up</a>
+            <div class="d-flex justify-content-end align-items-end" style="height: 50px;">
+                <br />
+                <button type="submit" class="position-absolute btn btn-primary">Login</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

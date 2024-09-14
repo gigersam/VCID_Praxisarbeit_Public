@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <form method="POST" action="{{ url_for('register') }}">
+        {% if get_flashed_messages() %}
+        <div class="error">
+            {% for message in get_flashed_messages() %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div class="customform">
+            <h2>Registrierung von Benutzer</h2>
+            <div>
+                <label for="username">Username</label>
+                <input type="text" class="form-control" aria-describedby="username" name="username">
+            </div>
+            <div>
+                <label for="Email">Email address</label>
+                <input type="email" class="form-control" aria-describedby="Email" name="email">
+            </div>
+            <div>
+                <label for="Password">Password</label>
+                <input type="password" class="form-control" id="Password" name="password">
+            </div>
+            <div>
+                <label for="Password">Confirm Password</label>
+                <input type="password" class="form-control" id="Password" name="confirm_password">
+            </div>
+            <div class="d-flex justify-content-end align-items-end" style="height: 50px;">
+                <br />
+                <button type="submit" class="position-absolute btn btn-primary">register</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
