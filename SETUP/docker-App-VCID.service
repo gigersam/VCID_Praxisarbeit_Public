@@ -1,0 +1,16 @@
+[Unit]
+Description=Docker Compose App VICD Service
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+User=root
+Group=docker
+WorkingDirectory=/VCID/VCID_Praxisarbeit_Public
+ExecStartPre=docker compose -f docker-compose.yml stop
+ExecStart=docker compose -f docker-compose.yml up
+ExecStop=docker compose -f docker-compose.yml stop
+
+[Install]
+WantedBy=multi-user.target

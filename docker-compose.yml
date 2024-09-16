@@ -28,4 +28,4 @@ services:
     depends_on:
       - app
     ports:
-      - "81:80"
+      - "80:80"
