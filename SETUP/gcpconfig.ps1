@@ -55,3 +55,6 @@ cp docker-App-VCID.service /etc/systemd/system/docker-App-VCID.service
 sudo systemctl daemon-reload
 sudo systemctl enable docker-App-VCID.service
 sudo systemctl restart docker-App-VCID.service
+
+# Docker App Scale out
+sudo docker compose scale app=X
